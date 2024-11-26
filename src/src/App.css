@@ -1,0 +1,170 @@
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 200px;
+  left: 0;
+  z-index: -1;
+  fill:rgba(68, 31, 7, 0.694);
+  transition: transform 2s ease-in-out;
+}
+
+html.asia svg{
+transform: scale(2) translateX(-20%);
+}
+html.north-america svg{
+transform: scale(2) translate(30%, 20%);
+}
+html.south-america svg{
+transform: scale(2) translate(25%, -10%);
+}
+html.europe svg{
+transform: scale(3) translate(-5%, 20%);
+}
+html.africa svg{
+transform: scale(2) translateX(0%);
+}
+html.australia svg{
+transform: scale(2) translate(-40%, -10%);
+}
+
+
+#message {
+color: white;
+}
+
+/* Light theme styling */
+body {
+  background-image: url(https://img.freepik.com/free-vector/vector-abstract-moon-relief-map-generated-conceptual-lunar-elevation-map-isolines-landscape-surface-elevation-geographic-map-conceptual-design-elegant-background-presentations_1217-6277.jpg?ga=GA1.1.1492227067.1731013694&semt=ais_hybrid);
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Container styling */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Continent selector styling */
+label {
+  font-size: 1.2em;
+  color: #6c6c6c;
+}
+
+.continent-selector {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  background-color: #e0e0e0;
+  color: #333;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode selector color adjustments */
+.dark-mode #continent-selector {
+  background-color: #2e3b32;
+  color: #c8e6c9;
+}
+
+/* Scoreboard styling */
+.scoreboard {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ff9800; 
+}
+
+
+/* Game container styling */
+.game-container {
+  background-color: rgba(0, 0, 0, 0.6); /* Transparent white */ 
+  border-radius: 0 0 20px 20px;
+  padding: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+/* Enlarged "Guess the capital of [Country]" styling */
+.country-name {
+  font-size: 4em; /* 4 times bigger */
+  font-weight: bold;
+  color: #007bff; /* Blue color for focus */
+  margin: 20px 0;
+  transition: color 0.3s;
+}
+
+
+/* Input and button styling */
+input[type="text"] {
+  padding: 12px;
+  width: 50%;
+  font-size: 2em;
+  border-radius: 8px;
+  border: none;
+  margin: 15px 0;
+  background-color: #e8f5e9;
+  color: #333;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1.2em;
+  border-radius: 8px;
+  border: none;
+  background-color: #388e3c;
+  color: #f4f4f4;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+
+/* Guess log styling */
+.guess-log {
+  display: none;
+  margin-top: 20px;
+}
+
+.guess-log-entry {
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #333;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold;
+}
+
+.guess-log-entry.correct {
+  color: #4fc457;
+}
+
+.guess-log-entry.wrong {
+  color: #b71c1c;
+}
+
+.guess-log-entry.typo {
+  color: #795548;
+}
