@@ -1,4 +1,20 @@
-const emojiList = ['😃', '😂', '😍', '🤔', '😎', '🤩', '🥳', '🤠', '😇', '🙃', '😜', '😛', '🤓', '👻', '🎃'];
+const emojiList = [
+  "😃",
+  "😂",
+  "😍",
+  "🤔",
+  "😎",
+  "🤩",
+  "🥳",
+  "🤠",
+  "😇",
+  "🙃",
+  "😜",
+  "😛",
+  "🤓",
+  "👻",
+  "🎃",
+];
 
 // Initialize players
 let players = initializePlayers();
@@ -21,7 +37,7 @@ const elements = {
 function initializePlayers() {
   return [
     { name: `${getRandomEmoji()} Player 1`, score: 0 },
-    { name: `${getRandomEmoji()} Player 2`, score: 0 }
+    { name: `${getRandomEmoji()} Player 2`, score: 0 },
   ];
 }
 
@@ -52,14 +68,14 @@ function updateCountryDisplay(countryData) {
 function highlightCountry(country, color, borderColor = null) {
   const elements = document.querySelectorAll(`[name="${country}"]`);
   if (!elements.length) {
-    console.error('No elements found for', country);
+    console.error("No elements found for", country);
     return;
   }
-  elements.forEach(element => {
+  elements.forEach((element) => {
     element.style.fill = color;
     if (borderColor) {
       element.style.stroke = borderColor;
-      element.style.strokeWidth = '2px';
+      element.style.strokeWidth = "2px";
     }
   });
 }
@@ -67,11 +83,14 @@ function highlightCountry(country, color, borderColor = null) {
 // Event Handlers
 function handleContinentFilter() {
   const selectedContinent = elements.continentSelector.value;
-  pool = selectedContinent === "All"
-    ? [...countriesAndCapitals]
-    : countriesAndCapitals.filter(country => country.continent === selectedContinent);
+  pool =
+    selectedContinent === "All"
+      ? [...countriesAndCapitals]
+      : countriesAndCapitals.filter(
+          (country) => country.continent === selectedContinent
+        );
 
-  document.querySelector('html').className = selectedContinent.toLowerCase();
+  document.querySelector("html").className = selectedContinent.toLowerCase();
   currentCountry = getRandomCountry(pool);
   updateCountryDisplay(currentCountry);
 }
@@ -113,7 +132,7 @@ function processCloseGuess(entry, guess) {
 }
 
 function processIncorrectGuess(entry, correctCapital) {
-  elements.message.textContent = `Wrong guess! The capital of ${currentCountry.country} is ${correctCapital}.`;
+  elements.message.innerHTML = `Wrong guess! The capital of ${currentCountry.country} is <span class="capital">${correctCapital}</span>.`;
   entry.classList.add("wrong");
   highlightCountry(currentCountry.country, "#c1121f", "#a70000");
   entry.textContent = `${players[turn].name}: Incorrect guess for ${currentCountry.country}. Correct: ${correctCapital}`;
@@ -121,7 +140,7 @@ function processIncorrectGuess(entry, correctCapital) {
 
 function updateGameStatus() {
   updateScores();
-  pool = pool.filter(country => country !== currentCountry);
+  pool = pool.filter((country) => country !== currentCountry);
   if (pool.length) {
     currentCountry = getRandomCountry(pool);
     updateCountryDisplay(currentCountry);
@@ -141,9 +160,14 @@ function levenshteinDistance(a, b) {
   for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
   for (let i = 1; i <= b.length; i++) {
     for (let j = 1; j <= a.length; j++) {
-      matrix[i][j] = b[i - 1] === a[j - 1]
-        ? matrix[i - 1][j - 1]
-        : Math.min(matrix[i - 1][j - 1] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j] + 1);
+      matrix[i][j] =
+        b[i - 1] === a[j - 1]
+          ? matrix[i - 1][j - 1]
+          : Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
     }
   }
   return matrix[b.length][a.length];
@@ -151,7 +175,7 @@ function levenshteinDistance(a, b) {
 
 // Event Listeners
 elements.continentSelector.addEventListener("change", handleContinentFilter);
-elements.capitalInput.addEventListener("keydown", event => {
+elements.capitalInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     handleGuessSubmission();
